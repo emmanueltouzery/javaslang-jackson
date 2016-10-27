@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import org.junit.Assert;
@@ -74,12 +75,14 @@ public class ListTest extends SeqTest {
         Assert.assertEquals(xmlMapperJaxb().writeValueAsString(new JaxbXmlSerializeJavaUtil()), javaUtilValue);
     }
 
+    @JacksonXmlRootElement(localName = "xmlSerialize")
     private static class XmlSerializeJavaslang {
         @JacksonXmlElementWrapper(localName = "transitTypes")
         @JsonProperty("transitType")
         public List<Integer> transitTypes = List.of(1, 2, 3);
     }
 
+    @JacksonXmlRootElement(localName = "xmlSerialize")
     private static class XmlSerializeJavaUtil {
         @JacksonXmlElementWrapper(localName = "transitTypes")
         @JsonProperty("transitType")
