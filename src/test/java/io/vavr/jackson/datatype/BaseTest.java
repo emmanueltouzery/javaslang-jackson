@@ -50,6 +50,9 @@ public class BaseTest {
     protected ObjectMapper mapper(VavrModule.Settings settings) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new VavrModule(settings));
+        final JaxbAnnotationModule annotationModule = new JaxbAnnotationModule();
+        annotationModule.setPriority(JaxbAnnotationModule.Priority.SECONDARY);
+        mapper.registerModules(annotationModule);
         return mapper;
     }
 
